@@ -8,12 +8,13 @@ import { LuUpload } from "react-icons/lu";
 function NavBar() {
   const [showSearchBar, setShowSearchBar] = useState(false);
 
-  const handleSearchBarShow = () => {
-    setShowSearchBar(true);
+  const handleSideBarToggle = () => {
+    document.getElementById("sidebar").classList.toggle("translate-x-0");
   };
+
   return (
-    <nav className="relative flex justify-between gap-6 items-center px-4 py-5 h-16">
-      <button>
+    <nav className="fixed top-0 w-full flex justify-between gap-6 items-center bg-white px-4 py-5 h-16 border border-b-slate-400">
+      <button onClick={handleSideBarToggle}>
         <GiHamburgerMenu size={20} />
       </button>
 
@@ -33,12 +34,12 @@ function NavBar() {
           </>
         )}
         {showSearchBar && (
-          <div className="absolute -left-[46%] translate-x-1/2 flex items-center gap-2 bg-[#444746] rounded-3xl h-11 pl-3 w-[96%] sm:w-full sm:max-w-md sm:left-[44%] sm:-translate-x-1/2">
+          <div className="absolute -left-[46%] translate-x-1/2 flex items-center gap-3 bg-slate-100 rounded-3xl h-11 pl-3 w-[96%] sm:w-full sm:max-w-md sm:left-[44%] sm:-translate-x-1/2">
             <button onClick={() => setShowSearchBar(false)}>
               <IoArrowBackSharp size={20} />
             </button>
             <input
-              className="bg-transparent border-none outline-none text-white placeholder:text-white w-full"
+              className="bg-transparent border-none outline-none placeholder:text-black w-full"
               type="text"
               placeholder="Search in Drive"
               autoFocus

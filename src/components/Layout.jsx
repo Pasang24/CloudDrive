@@ -7,8 +7,10 @@ function Layout() {
   return (
     <>
       <NavBar />
-      <SideBar />
-      <Outlet />
+      <div className="mt-16">
+        <SideBar />
+        <Outlet />
+      </div>
     </>
   );
 }
