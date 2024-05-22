@@ -1,11 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { MdOutlineCreateNewFolder } from "react-icons/md";
-import { MdUploadFile, MdOutlineDriveFolderUpload } from "react-icons/md";
+import {
+  MdOutlineCreateNewFolder,
+  MdOutlineDevices,
+  MdUploadFile,
+  MdOutlineDriveFolderUpload,
+} from "react-icons/md";
 
-function Menu({ closeMenu }) {
-  const menuRef = useRef(null);
-
+function Menu({ closeMenu, closeMenuOnClick, setShowAddFolder }) {
   const menuOptions = [
     {
       name: "File upload",
@@ -19,38 +21,61 @@ function Menu({ closeMenu }) {
     },
   ];
 
-  const classNames = "flex items-center gap-4 px-4 py-2 hover:bg-slate-200";
+  const classNames = "flex items-center gap-4 px-4 py-3 hover:bg-slate-200";
+
+  const openAddFolder = (event) => {
+    event.stopPropagation();
+    closeMenu();
+    setShowAddFolder(true);
+  };
 
   useEffect(() => {
-    window.addEventListener("click", closeMenu);
+    window.addEventListener("click", closeMenuOnClick);
+    window.addEventListener("scroll", closeMenu);
 
-    return () => window.removeEventListener("click", closeMenu);
+    return () => {
+      window.removeEventListener("click", closeMenuOnClick);
+      window.removeEventListener("scroll", closeMenu);
+    };
   }, []);
 
   return (
     <motion.div
-      initial={{ height: 0 }}
-      animate={{ height: "auto" }}
-      transition={{ duration: 0.1 }}
-      ref={menuRef}
+      initial={{ opacity: 0, translateY: -10 }}
+      animate={{ opacity: 1, translateY: 0 }}
+      exit={{ opacity: 0, translateY: -10 }}
+      transition={{ duration: 0.3 }}
       className="absolute -top-1 -left-1 flex flex-col w-48 font-medium text-sm bg-white rounded-sm shadow-[1px_1px_12px_#94a3b8]"
     >
       <motion.button
-        initial={{ top: -10, opacity: 0.5 }}
-        animate={{ top: 0, opacity: 1 }}
+        initial={{ opacity: 0, translateY: -10 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        exit={{ opacity: 0, translateY: -10 }}
         transition={{ duration: 0.1 }}
-        className={classNames}
+        onClick={openAddFolder}
+        className={`${classNames} border-b-2`}
       >
         <MdOutlineCreateNewFolder size={20} />
         <span>New folder</span>
       </motion.button>
+      <motion.div
+        initial={{ opacity: 0, translateY: -10 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        exit={{ opacity: 0, translateY: -10 }}
+        transition={{ duration: 0.1 }}
+        className="flex gap-2 items-center px-4 py-1 text-[13px]"
+      >
+        <MdOutlineDevices />
+        <span>Upload from device</span>
+      </motion.div>
       {menuOptions.map((option, index) => (
         <React.Fragment key={index}>
           <input type="file" hidden id={option.id} />
           <motion.label
-            initial={{ top: -10, opacity: 0.5 }}
-            animate={{ top: 0, opacity: 1 }}
-            transition={{ duration: 0.1 * (index + 1) }}
+            initial={{ opacity: 0, translateY: -10 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            exit={{ opacity: 0, translateY: -10 }}
+            transition={{ duration: 0.1, delay: (index + 1) * 0.05 }}
             className={`${classNames} cursor-pointer`}
             htmlFor={option.id}
           >
