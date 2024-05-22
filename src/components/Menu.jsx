@@ -1,26 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  MdOutlineCreateNewFolder,
-  MdOutlineDevices,
-  MdUploadFile,
-  MdOutlineDriveFolderUpload,
-} from "react-icons/md";
+import { MdOutlineCreateNewFolder, MdOutlineDevices } from "react-icons/md";
 
-function Menu({ closeMenu, closeMenuOnClick, setShowAddFolder }) {
-  const menuOptions = [
-    {
-      name: "File upload",
-      id: "file-upload",
-      icon: <MdUploadFile size={20} />,
-    },
-    {
-      name: "Folder upload",
-      id: "folder-upload",
-      icon: <MdOutlineDriveFolderUpload size={20} />,
-    },
-  ];
-
+function Menu({ closeMenu, closeMenuOnClick, setShowAddFolder, menuOptions }) {
   const classNames = "flex items-center gap-4 px-4 py-3 hover:bg-slate-200";
 
   const openAddFolder = (event) => {
@@ -69,20 +51,18 @@ function Menu({ closeMenu, closeMenuOnClick, setShowAddFolder }) {
         <span>Upload from device</span>
       </motion.div>
       {menuOptions.map((option, index) => (
-        <React.Fragment key={index}>
-          <input type="file" hidden id={option.id} />
-          <motion.label
-            initial={{ opacity: 0, translateY: -10 }}
-            animate={{ opacity: 1, translateY: 0 }}
-            exit={{ opacity: 0, translateY: -10 }}
-            transition={{ duration: 0.1, delay: (index + 1) * 0.05 }}
-            className={`${classNames} cursor-pointer`}
-            htmlFor={option.id}
-          >
-            {option.icon}
-            <span>{option.name}</span>
-          </motion.label>
-        </React.Fragment>
+        <motion.label
+          initial={{ opacity: 0, translateY: -10 }}
+          animate={{ opacity: 1, translateY: 0 }}
+          exit={{ opacity: 0, translateY: -10 }}
+          transition={{ duration: 0.1, delay: (index + 1) * 0.05 }}
+          className={`${classNames} cursor-pointer`}
+          htmlFor={option.id}
+          key={index}
+        >
+          {option.icon}
+          <span>{option.name}</span>
+        </motion.label>
       ))}
     </motion.div>
   );

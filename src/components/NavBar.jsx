@@ -8,13 +8,29 @@ import { LuUpload } from "react-icons/lu";
 function NavBar() {
   const [showSearchBar, setShowSearchBar] = useState(false);
 
-  const handleSideBarToggle = () => {
-    document.getElementById("sidebar").classList.toggle("translate-x-0");
+  const handleSideBarToggle = (event) => {
+    event.stopPropagation();
+    const sideBarEl = document.getElementById("sidebar");
+    const newBtnEl = document.querySelector("[data-newbtn]");
+    const sideLinksEl = document.querySelectorAll("[data-sidelink]");
+    if (window.screen.width < 640) {
+      sideBarEl.classList.toggle("translate-x-0");
+    } else {
+      sideBarEl.classList.toggle("sm:w-20");
+      sideBarEl.classList.toggle("sm:drop-shadow-none");
+      newBtnEl.classList.toggle("sm:p-2");
+      newBtnEl.querySelector("span").classList.toggle("sm:hidden");
+      sideLinksEl.forEach((sideLink) => {
+        sideLink.classList.toggle("sm:px-3");
+        sideLink.classList.toggle("sm:w-11");
+        sideLink.querySelector("span").classList.toggle("sm:hidden");
+      });
+    }
   };
 
   return (
     <nav className="fixed top-0 w-full flex justify-between gap-6 items-center bg-white px-4 py-5 h-16 border border-b-slate-400">
-      <button onClick={handleSideBarToggle}>
+      <button onClick={handleSideBarToggle} className="lg:hidden">
         <GiHamburgerMenu size={20} />
       </button>
 

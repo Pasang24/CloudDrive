@@ -2,7 +2,7 @@ import React from "react";
 
 function Home() {
   return (
-    <div className="bg-white p-3 rounded-xl">
+    <div className="bg-white p-3 rounded-xl sm:ml-20 lg:ml-[276px]">
       <p>
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, rerum
         commodi minima provident modi dignissimos necessitatibus laudantium
