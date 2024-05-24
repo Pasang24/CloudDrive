@@ -9,17 +9,22 @@ function PageLayout({ header, children }) {
   return (
     <Panel>
       <PageHeader header={header} view={view} setView={setView} />
-      <FileFolderContainer className="mt-3">
+      <FileFolderContainer className="mt-3 text-[#3c4043]">
         <FileFolderList
           header="Folders"
           data={{
             type: "folder",
             list: [
-              { name: "Untitled Folder" },
-              { name: "Untitled Folder" },
-              { name: "Untitled Folder" },
-              { name: "Untitled Folder" },
-              { name: "Untitled Folder" },
+              { name: "Photos" },
+              { name: "Labs" },
+              { name: "Videos" },
+              { name: "Projects" },
+              { name: "Music" },
+              { name: "Documents" },
+              { name: "Albums" },
+              { name: "Don't know what to call this one" },
+              { name: "Bla Bla Bla" },
+              { name: "Whatever this is" },
             ],
           }}
         />
