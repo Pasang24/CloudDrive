@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Layout from "./components/Layout";
@@ -8,6 +8,16 @@ import Bin from "./pages/Bin";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  useEffect(() => {
+    const removeDefaultContextMenu = (event) => {
+      event.preventDefault();
+    };
+
+    window.addEventListener("contextmenu", removeDefaultContextMenu);
+
+    return () =>
+      window.removeEventListener("contextmenu", removeDefaultContextMenu);
+  });
   return (
     <>
       <Routes>

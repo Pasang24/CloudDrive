@@ -100,7 +100,7 @@ function SideBar() {
       <div
         ref={sideBarRef}
         id="sidebar"
-        className="fixed flex flex-col gap-4 items-start pl-3 pr-6 py-6 h-[calc(100vh-4rem)] bg-white drop-shadow-2xl font-medium text-sm select-none -translate-x-full transition-all sm:translate-x-0 sm:w-20 sm:drop-shadow-none lg:w-fit lg:drop-shadow-none"
+        className="fixed z-20 flex flex-col gap-4 items-start pl-3 pr-6 py-6 w-[276px] h-[calc(100vh-4rem)] bg-white drop-shadow-2xl font-medium text-sm -translate-x-full transition-all sm:translate-x-0 sm:w-20 sm:drop-shadow-none lg:w-[276px] lg:drop-shadow-none"
       >
         <div
           onClick={() => setShowMenu(true)}
@@ -129,7 +129,7 @@ function SideBar() {
             )}
           </AnimatePresence>
         </div>
-        <div className="flex flex-col w-60">
+        <div className="flex flex-col w-full">
           {sideBarOptions.map((option, index) => (
             <NavLink
               to={option.path}

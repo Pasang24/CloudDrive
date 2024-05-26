@@ -7,7 +7,7 @@ function Modal({ closeModal, children }) {
     return () => document.body.classList.remove("overflow-hidden");
   }, []);
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-20 grid place-items-center">
+    <div className="fixed z-30 inset-0 bg-black bg-opacity-20 grid place-items-center">
       {children}
     </div>
   );

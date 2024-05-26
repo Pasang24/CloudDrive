@@ -8,6 +8,7 @@
   body {
     background-color: white;
     color: rgb(31, 31, 31);
+    user-select: none;
   }
   #modal {
     position: relative;
